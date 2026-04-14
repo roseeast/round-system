@@ -1,35 +1,20 @@
 # Dynamic Round System
 
-🎯 Dynamic Round System (SA-MP)
+A fully dynamic round (circle zone) system for San Andreas Multiplayer servers with MySQL integration.
 
-Sistem Dynamic Round ini memungkinkan server San Andreas Multiplayer untuk membuat, mengedit, dan menghapus area berbentuk lingkaran (round) secara dinamis dengan dukungan database MySQL.
-
-Cocok digunakan untuk:
-
-Area event
-Zone PvP
-Checkpoint custom
-Safe zone / danger zone
-⚙️ Features
-✅ Create round langsung in-game
-✅ Edit posisi, warna, ukuran, world, interior
-✅ Auto save ke database (MySQL)
-✅ Load otomatis saat server start
-✅ Dynamic object & area (streamer)
-✅ Support hingga 300 round
 📦 Requirements
 
-Pastikan server kamu sudah include:
+Make sure your server includes:
 
+```
 a_samp
-streamer
-a_mysql
-YSI\y_hooks
-YSI\y_iterate
-sscanf2
-🗄️ Database Structure
+Incognito Streamer Plugin
+BlueG MySQL Plugin
+YSI Library (y_hooks, y_iterate)
+sscanf Plugin
+🗄️ Database Setup
 
-Buat tabel rounds:
+Create the following table in your MySQL database:
 
 CREATE TABLE `rounds` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,67 +26,44 @@ CREATE TABLE `rounds` (
   `color` INT,
   `size` FLOAT
 );
-🚀 Commands
-🔹 /createround
+🚀 Installation
+Import the SQL table into your database
+Add the script to your gamemode or filterscript
+Ensure your MySQL connection (g_SQL) is properly configured
+Compile and run your server
+🎮 Commands
+/createround
 
-Membuat round baru di posisi player
+Create a new round at your current position.
 
 /createround [color] [size]
 
-Contoh:
+Example:
 
-/createround merah 5.0
-🔹 /editround
+/createround red 5.0
+/editround
 
-Edit data round
+Modify an existing round.
 
 /editround [id] [type] [value]
-Type yang tersedia:
-pos → update posisi ke posisi player
-vw → virtual world
-int → interior
-color → warna
-size → ukuran
-delete → hapus round
 
-Contoh:
+Available types:
+
+pos → Update to your current position
+vw → Set virtual world
+int → Set interior
+color → Change color
+size → Change size
+delete → Remove round
+
+Example:
 
 /editround 1 size 10.0
-/editround 1 color biru
+/editround 1 color blue
 /editround 1 delete
-🔹 /nearround
+/nearround
 
-Menampilkan ID round terdekat
+Get the nearest round ID.
 
 /nearround
-🎨 Color List
-
-Gunakan nama warna berikut:
-
-merah
-hijau
-biru
-kuning
-pink
-putih
-hitam
-🔄 System Flow
-Server start → Load_Round() ambil data dari MySQL
-Round dibuat → masuk ke iterator (YSI)
-Object + area dibuat via streamer
-Player spawn → semua round ditampilkan
-Server shutdown → semua round auto save
-🧠 Core Functions
-Round_Reset() → reset semua data
-Round_Refresh(id) → recreate object & area
-Round_Save(id) → simpan ke database
-Load_Round() → load dari MySQL
-⚠️ Notes
-Max round: 300 (bisa diubah di #define MAX_DYNAMIC_ROUND)
-Hanya admin level 7+ yang bisa create/edit
-Gunakan plugin streamer terbaru agar optimal
-Pastikan koneksi MySQL (g_SQL) sudah benar
-📌 Tips
-Gunakan size kecil (2.0 - 10.0) untuk performa stabil
-Jangan terlalu banyak round di satu area
-Gunakan warna transparan agar tidak terlalu mencolok
+```

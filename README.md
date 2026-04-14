@@ -4,18 +4,16 @@ A fully dynamic round (circle zone) system for San Andreas Multiplayer servers w
 
 📦 Requirements
 
-Make sure your server includes:
-
 ```
 a_samp
 Incognito Streamer Plugin
 BlueG MySQL Plugin
 YSI Library (y_hooks, y_iterate)
 sscanf Plugin
-🗄️ Database Setup
+```
 
 Create the following table in your MySQL database:
-
+```
 CREATE TABLE `rounds` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `x` FLOAT,
@@ -26,12 +24,9 @@ CREATE TABLE `rounds` (
   `color` INT,
   `size` FLOAT
 );
-🚀 Installation
-Import the SQL table into your database
-Add the script to your gamemode or filterscript
-Ensure your MySQL connection (g_SQL) is properly configured
-Compile and run your server
-🎮 Commands
+```
+# Commands
+```
 /createround
 
 Create a new round at your current position.
@@ -62,6 +57,7 @@ Example:
 /editround 1 color blue
 /editround 1 delete
 /nearround
+```
 
 Get the nearest round ID.
 
